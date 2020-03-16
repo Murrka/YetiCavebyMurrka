@@ -1,4 +1,4 @@
-<?php
+<?php //by Murrka
 $is_auth = rand(0, 1);
 
 $user_name = ''; // укажите здесь ваше имя
