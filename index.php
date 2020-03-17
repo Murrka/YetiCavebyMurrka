@@ -3,15 +3,15 @@ $is_auth = rand(0, 1);
 
 $user_name = 'Murrka'; // укажите здесь ваше имя
 $Cattegory=array("Доски и лыжи","Крепления", "Ботинки","Одежда","Инструменты", "Разное");
-$Tovari=array( array("2014 Rossingnol District Snowboard", "Доски и лыжи", "10999", "img/lot-1.jpg"),
-			array("DC Ply Mens 2016/2017 Snowboard", "Доски и лыжи", "159999", "img/lot-2.jpg"),
-			array("крепления Union Contact Pro 2015 года размер L/XL", "Крепления", "8000", "img/lot-3.jpg"),
-			array("Ботинки для сноуборда DC Mutiny Charocal", "Ботинки", "10999", "img/lot-4.jpg"),
-			array("Куртка для сноуборда DC Mutiny Charocal", "Одежда", "7500", "img/lot-5.jpg"),
-			array("Маска Oakley Canopy", "Разное", "5400", "img/lot-6.jpg")
-);
+
+$tovari=array( array("Name"=>"2014 Rossingnol District Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"10999", "Image"=>"img/lot-1.jpg"),
+array("Name"=>"DC Ply Mens 2016/2017 Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"159999", "Image"=>"img/lot-2.jpg"),
+array("Name"=>"Крепления Union Contact Pro 2015 года размер L/XL", "Kategoria"=>"Крепления", "Price"=>"8000", "Image"=>"img/lot-3.jpg"),
+array("Name"=>"Ботинки для сноуборда DC Mutiny Charocal", "Kategoria"=>"Ботинки", "Price"=>"10999", "Image"=>"img/lot-4.jpg"),
+array("Name"=>"Куртка для сноуборда DC Mutiny Charocal", "Kategoria"=>"Одежда", "Price"=>"7500", "Image"=>"img/lot-5.jpg"),
+array("Name"=>"Маска Oakley Canopy", "Kategoria"=>"Разное", "Price"=>"5400", "Image"=>"img/lot-6.jpg"));
+
 $rows=6;
-$col=4;
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -38,29 +38,27 @@ $col=4;
 
         <nav class="user-menu">
 			<?php
-			if($is_auth==1)
-			{
-				echo '<div class="user-menu__image">
-						<img src="img/user.jpg" width="40" height="40" alt="Пользователь">
-					</div>
-					<div class="user-menu__logged">';
-						echo '<p>' . $user_name . '</p>';
-				echo '</div>';
+			if($is_auth==1):?>
+				<div class="user-menu__image">
+					<img src="img/user.jpg" width="40" height="40" alt="Пользователь">
+				</div>
+				<div class="user-menu__logged">
+				<p><?= $user_name;?></p>
+				</div>
 
-			}
-			else{
-				echo '<ul class="user-menu__list">
+			
+			<?php else: ?>
+				<ul class="user-menu__list">
 						<li class="user-menu__item">
 							<a href="#">Регистрация</a>
 						</li>
 						<li class="user-menu__item">
 							<a href="#">Вход</a>
 						</li>
-					</ul>';
-			}
-			?>
+					</ul>
+			<?php endif;?>
         <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
-
+		
         </nav>
     </div>
 </header>
@@ -71,14 +69,13 @@ $col=4;
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-			<?php
-				for($i=0;$i<count($Cattegory); $i++)
-				{
-					echo '<li class="promo__item promo__item--boards">';
-							echo '<a class="promo__link" href="pages/all-lots.html">' . $Cattegory[$i] . '</a>';
-					echo '</li>';
-				}
-			?>
+			<?php foreach($Cattegory as $v): ?>
+				<li class="promo__item promo__item--boards">
+					<a class="promo__link" href="pages/all-lots.html"> <?= $v ?></a>
+				</li>
+			<?php endforeach;?>
+				
+			
         </ul>
     </section>
     <section class="lots">
@@ -87,30 +84,28 @@ $col=4;
         </div>
         <ul class="lots__list">
             <!--заполните этот список из массива с товарами-->
-			<?php
-				for ($i=0; $i<$rows; $i++){
-					echo '<li class="lots__item lot">
-							<div class="lot__image">';
-					echo		'<img src="' . $Tovari[$i][3] . '" width="350" height="260" alt="">';
-					echo 	'</div>
-							<div class="lot__info">';
-					echo '<span class="lot__category">' . $Tovari[$i][1] /*Название категории*/ . '</span>';
-					echo '<h3 class="lot__title"><a class="text-link" href="pages/lot.html">' . $Tovari[$i][0]/*Название товара*/ . '</a></h3>';
-					echo '<div class="lot__state">
-                        <div class="lot__rate">';
-					echo '<span class="lot__amount">' . $Tovari[$i][2]/*Стартовая цена*/ . '</span>';
-					echo '<span class="lot__cost">' . $Tovari[$i][2]/*цена*/ . '<b class="rub">р</b></span>';
-					echo '</div>
-								<div class="lot__timer timer">
-									12:23
-								</div>
+			<?php foreach($tovari as $tovar): ?>
+			
+			
+				<li class="lots__item lot">
+					<div class="lot__image">
+						<img src="<?= $tovar["Image"]?> " width="350" height="260" alt="">
+					</div>
+					<div class="lot__info">
+						<span class="lot__category"><?= $tovar["Kategoria"] /*Название категории*/?> </span>
+						<h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $tovar["Name"]/*Название товара*/ ?></a></h3>
+						<div class="lot__state">
+							<div class="lot__rate">
+								<span class="lot__amount"><?= $tovar["Price"]/*Стартовая цена*/?></span>
+								<span class="lot__cost"><?= $tovar["Price"]/*цена*/ ?> <b class="rub">р</b></span>
+							</div>
+							<div class="lot__timer timer">
+								12:23
 							</div>
 						</div>
-						</li>';
-				}
-					
-			?>
-            
+					</div>
+				</li>
+				<?php endforeach;?>
         </ul>
     </section>
 </main>
@@ -120,14 +115,11 @@ $col=4;
     <nav class="nav">
         <ul class="nav__list container">
             <!--заполните этот список из массива категорий-->
-			<?php 
-				for($i=0;$i<count($Cattegory); $i++){
-					echo '<li class="nav__item">';
-						echo '<a href="pages/all-lots.html">' . $Cattegory[$i] . '</a>';
-					echo '</li>';
-				}
-			?>
-            
+			<?php foreach($Cattegory as $v): ?>
+					<li class="nav__item">
+						<a href="pages/all-lots.html"> <?= $v ?> </a>
+					</li>
+			<?php endforeach;?>		
         </ul>
     </nav>
     <div class="main-footer__bottom container">
