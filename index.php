@@ -2,7 +2,12 @@
 $is_auth = rand(0, 1);
 
 $user_name = 'Murrka'; // укажите здесь ваше имя
-$Cattegory=array("Доски и лыжи","Крепления", "Ботинки","Одежда","Инструменты", "Разное");
+$Cattegory=array("boards"=>"Доски и лыжи",
+"attachment"=>"Крепления",
+"boots"=>"Ботинки",
+"clothing"=>"Одежда",
+"tools"=>"Инструменты", 
+"other"=>"Разное");
 
 $tovari=array( array("Name"=>"2014 Rossingnol District Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"10999", "Image"=>"img/lot-1.jpg"),
 array("Name"=>"DC Ply Mens 2016/2017 Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"159999", "Image"=>"img/lot-2.jpg"),
@@ -69,8 +74,8 @@ $rows=6;
         <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <!--заполните этот список из массива категорий-->
-			<?php foreach($Cattegory as $v): ?>
-				<li class="promo__item promo__item--boards">
+			<?php foreach($Cattegory as $k=>$v): ?>
+				<li class="promo__item promo__item--<?= $k?>">
 					<a class="promo__link" href="pages/all-lots.html"> <?= $v ?></a>
 				</li>
 			<?php endforeach;?>
