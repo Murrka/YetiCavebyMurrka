@@ -16,7 +16,19 @@ array("Name"=>"Ботинки для сноуборда DC Mutiny Charocal", "Ka
 array("Name"=>"Куртка для сноуборда DC Mutiny Charocal", "Kategoria"=>"Одежда", "Price"=>"7500", "Image"=>"img/lot-5.jpg"),
 array("Name"=>"Маска Oakley Canopy", "Kategoria"=>"Разное", "Price"=>"5400", "Image"=>"img/lot-6.jpg"));
 
-$rows=6;
+//функция 18.03.2020
+function OneIzmeneia($price){
+	$price=ceil($price);
+	if($price>=1000)
+	{
+		$priceItog=number_format($price,0,',',' ');
+	}
+	else{
+		$priceItog=$price;
+	}
+	return $priceItog . '<b class="rub">р</b>';
+	
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -101,8 +113,9 @@ $rows=6;
 						<h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $tovar["Name"]/*Название товара*/ ?></a></h3>
 						<div class="lot__state">
 							<div class="lot__rate">
-								<span class="lot__amount"><?= $tovar["Price"]/*Стартовая цена*/?></span>
-								<span class="lot__cost"><?= $tovar["Price"]/*цена*/ ?> <b class="rub">р</b></span>
+								<span class="lot__amount">Стартовая цена</span>
+								<span class="lot__cost"><?= OneIzmeneia($tovar["Price"]);
+								/*цена*/ ?> <!--<b class="rub">р</b>--></span>
 							</div>
 							<div class="lot__timer timer">
 								12:23
