@@ -17,7 +17,7 @@ array("Name"=>"Куртка для сноуборда DC Mutiny Charocal", "Kate
 array("Name"=>"Маска Oakley Canopy", "Kategoria"=>"Разное", "Price"=>"5400", "Image"=>"img/lot-6.jpg"));
 
 //функция 18.03.2020
-function OneIzmeneia($price){
+function OneIzmeneia($price,$chek){
 	$price=ceil($price);
 	if($price>=1000)
 	{
@@ -26,7 +26,10 @@ function OneIzmeneia($price){
 	else{
 		$priceItog=$price;
 	}
-	return $priceItog . '<b class="rub">р</b>';
+	if($chek==true){
+	return $priceItog . ' <b class="rub">р</b>';}
+	else{
+	return $priceItog;}
 	
 }
 ?>
@@ -113,8 +116,8 @@ function OneIzmeneia($price){
 						<h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $tovar["Name"]/*Название товара*/ ?></a></h3>
 						<div class="lot__state">
 							<div class="lot__rate">
-								<span class="lot__amount">Стартовая цена</span>
-								<span class="lot__cost"><?= OneIzmeneia($tovar["Price"]);
+								<span class="lot__amount">Стартовая цена <?= OneIzmeneia($tovar["Price"],false)?></span>
+								<span class="lot__cost"><?= OneIzmeneia($tovar["Price"],true);
 								/*цена*/ ?> <!--<b class="rub">р</b>--></span>
 							</div>
 							<div class="lot__timer timer">
