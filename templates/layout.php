@@ -1,50 +1,8 @@
-<?php //by Murrka
-$is_auth = rand(0, 1);
-
-$user_name = 'Murrka'; // укажите здесь ваше имя
-$Cattegory=array("boards"=>"Доски и лыжи",
-"attachment"=>"Крепления",
-"boots"=>"Ботинки",
-"clothing"=>"Одежда",
-"tools"=>"Инструменты", 
-"other"=>"Разное");
-
-$tovari=array( array("Name"=>"2014 Rossingnol District Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"10999", "Image"=>"img/lot-1.jpg"),
-array("Name"=>"DC Ply Mens 2016/2017 Snowboard", "Kategoria"=>"Доски и лыжи", "Price"=>"159999", "Image"=>"img/lot-2.jpg"),
-array("Name"=>"Крепления Union Contact Pro 2015 года размер L/XL", "Kategoria"=>"Крепления", "Price"=>"8000", "Image"=>"img/lot-3.jpg"),
-array("Name"=>"Ботинки для сноуборда DC Mutiny Charocal", "Kategoria"=>"Ботинки", "Price"=>"10999", "Image"=>"img/lot-4.jpg"),
-array("Name"=>"Куртка для сноуборда DC Mutiny Charocal", "Kategoria"=>"Одежда", "Price"=>"7500", "Image"=>"img/lot-5.jpg"),
-array("Name"=>"Маска Oakley Canopy", "Kategoria"=>"Разное", "Price"=>"5400", "Image"=>"img/lot-6.jpg"));
-
-//функция 18.03.2020
-function OneIzmeneia($price,$chek){
-	$price=ceil($price);
-	if($price>=1000)
-	{
-		$priceItog=number_format($price,0,',',' ');
-	}
-	else{
-		$priceItog=$price;
-	}
-	if($chek==true){
-	return $priceItog . ' <b class="rub">р</b>';}
-	else{
-	return $priceItog;}
-	
-}
-
-include 'functions.php';
-$title_name="Главная";
-$index_file=include_template('index.php', array('Cattegory'=>$Cattegory,'tovari'=>$tovari));
-$footer_file=include_template('footer_index.php',array('Cattegory'=>$Cattegory));
-print(include_template('layout.php', array('index_file'=>$index_file,'title_name'=>$title_name,'footer_file'=>$footer_file,
-'is_auth'=>$is_auth,'user_name'=>$user_name)));
-?>
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    <title><?=$title_name?></title>
     <link href="../css/normalize.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
@@ -84,28 +42,19 @@ print(include_template('layout.php', array('index_file'=>$index_file,'title_name
 						</li>
 					</ul>
 			<?php endif;?>
-        <!-- здесь должен быть PHP код для показа меню и данных пользователя 
+        <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
 		
         </nav>
     </div>
 </header>
 
-<main class="container">
+<main class="container"><?=$index_file?>
     
 </main>
 </div>
 
-<footer class="main-footer">
-    <nav class="nav">
-        <ul class="nav__list container">
-            <!--заполните этот список из массива категорий
-			<?php foreach($Cattegory as $v): ?>
-					<li class="nav__item">
-						<a href="pages/all-lots.html"> <?= $v ?> </a>
-					</li>
-			<?php endforeach;?>		
-        </ul>
-    </nav>
+<footer class="main-footer"><?=$footer_file?>
+    
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>
@@ -151,4 +100,4 @@ print(include_template('layout.php', array('index_file'=>$index_file,'title_name
 <script src="flatpickr.js"></script>
 <script src="script.js"></script>
 </body>
-</html>-->
+</html>
