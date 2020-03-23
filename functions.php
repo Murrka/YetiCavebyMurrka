@@ -52,5 +52,13 @@ function include_template($name, $data) {
  
     return $result;
 }
+function vremechko(){
+	$NowTime=time();
+	$NextTime=strtotime("+1 day 00:00");
+	$Raznica=$NextTime-$NowTime;
+	$Raznica=floor($Raznica);
+	$Vremechko=date("H:i",mktime(0,0,$Raznica));
+	return $Vremechko;
+}
 
 ?>
