@@ -21,9 +21,7 @@ CREATE TABLE `users`
 `name` VARCHAR(16) NOT NULL , 
 `password` VARCHAR(16) NOT NULL , 
 `avatar` VARCHAR(16) NOT NULL , 
-`contacts` VARCHAR(128) NOT NULL , 
-`id_lots` INT NOT NULL , 
-`id_bets` INT NOT NULL , 
+`contacts` VARCHAR(128) NOT NULL ,  
 PRIMARY KEY (`id_users`)) ENGINE = InnoDB;
 
 
@@ -36,9 +34,10 @@ CREATE TABLE `lots`
 `first_price` INT(25) NOT NULL , 
 `date_end` DATETIME NOT NULL , 
 `steps_lots` INT NOT NULL , 
-`id_autor` INT NOT NULL , 
-`id_winner` INT NOT NULL , 
-`id_cat` INT NOT NULL , 
+`id_autor` INT(10) NOT NULL , 
+`id_winner` INT(10) NOT NULL , 
+`id_cat` INT(10) NOT NULL ,
+`lot_price` INT(11) NOT NULL ,
 PRIMARY KEY (`id_lots`)) ENGINE = InnoDB;
 
 
